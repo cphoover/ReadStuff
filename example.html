@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+    <head>
+        <title>
+            Read Demo
+        </title>
+            <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
+            <style>
+                #main{width:500px; margin:0px auto;}
+            </style>
+    </head>
+    <body>
+    <div id="main" class="container">
+        <h1>Here is my selectable speech demo</h1>
+        <p><img src="http://lorempixel.com/500/150" /></p>
+
+<h2>No, motherfucker</h2>
+<p>The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother's keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who would attempt to poison and destroy My brothers. And you will know My name is the Lord when I lay My vengeance upon thee. </p>
+
+<h2>I gotta piss</h2>
+<p>Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit.  </p>
+
+<h2>Hold on to your butts</h2>
+<p>Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't, become nothing. She starred in one of the ones that became nothing. </p>
+
+<h2>I can do that</h2>
+<p>Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends. </p>
+
+<h2>I can do that</h2>
+<p>The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother's keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who would attempt to poison and destroy My brothers. And you will know My name is the Lord when I lay My vengeance upon thee. </p>
+
+<h2>We happy?</h2>
+<p>Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit.  </p>
+
+<h2>I gotta piss</h2>
+<p>The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother's keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who would attempt to poison and destroy My brothers. And you will know My name is the Lord when I lay My vengeance upon thee. </p>
+
+<h2>Uuummmm, this is a tasty burger!</h2>
+<p>Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass. </p>
+
+<h2>Are you ready for the truth?</h2>
+<p>The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother's keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who would attempt to poison and destroy My brothers. And you will know My name is the Lord when I lay My vengeance upon thee. </p>
+
+<h2>Hold on to your butts</h2>
+<p>My money's in that office, right? If she start giving me some bullshit about it ain't there, and we got to go someplace else and get it, I'm gonna shoot you in the head then and there. Then I'm gonna shoot that bitch in the kneecaps, find out where my goddamn money is. She gonna tell me too. Hey, look at me when I'm talking to you, motherfucker. You listen: we go in there, and that nigga Winston or anybody else is in there, you the first motherfucker to get shot. You understand? </p>
+
+
+    </div>
+    <!-- javascript at bottom -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
+    <script src="js/soundmanager2.js"></script>
+    <script>
+        soundManager.setup({
+            preferFlash: false,
+        });
+        soundManager.onplay(function(){
+                document.body.style.cursor = "inherit";
+         });
+    </script>
+    <script>
+        $(function(){
+    
+            var saySelection = function(e){
+                var selection;
+                
+                if (window.getSelection) {
+                  selection = window.getSelection();
+                } else if (document.selection) {
+                  selection = document.selection.createRange();
+                }
+                
+                if(selection.toString() !== ''){
+                            
+                            document.body.style.cursor = "wait";
+                            soundManager.stopAll();
+                            var soundId = "s" + new Date().getTime() + "-" + Math.floor(Math.random()*100000);
+                           
+                            soundManager.createSound({
+                                  id: soundId,
+                                  autoLoad:true,
+                                  url:  'http://tts-api.com/tts.mp3?q=' + encodeURIComponent(selection.toString()),
+                                  onload: function() { document.body.style.cursor = "inherit"; },
+                                  stream: true
+                            });
+
+                            soundManager.play(soundId);
+                }
+            };
+
+            $(document.body).on('mouseup', saySelection);
+            $(document.body).on('keyup', saySelection);
+
+        });        
+    </script>
+
+    </body>
+</html>
